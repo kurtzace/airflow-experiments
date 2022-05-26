@@ -1,6 +1,7 @@
 ## Guides
 - [Productionalizing Data Pipelines with Apache Airflow by Axel Sirota | Pluralsight](https://www.pluralsight.com/courses/productionalizing-data-pipelines-apache-airflow)
 - [git study](https://github.com/mikeroyal/Apache-Airflow-Guide)
+- [express youtube guide](https://www.youtube.com/watch?v=2v9AKewyUEo)
 
 ## Getting started project
 [git productionalizing-data-pipelines-airflow](https://github.com/axel-sirota/productionalizing-data-pipelines-airflow)
