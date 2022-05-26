@@ -21,6 +21,7 @@ services:
     container_name: airflow
     environment:
       - AIRFLOW__CORE__FERNET_KEY="Z27wHAQxCObGWbIYyp06PlNoNlV7hyLO5zT74itoQww="
+      - AIRFLOW__API__AUTH_BACKEND=airflow.api.auth.backend.default
     volumes:
       - ./dags:/usr/local/airflow/dags
       - ./docker/airflow/fileinput:/fileinput

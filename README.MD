@@ -12,8 +12,8 @@ sudo docker-compose build
 sudo docker-compose up
 ```
 
-### trigger run
-#### first run
+## trigger run
+### first run
 - Hello world
 - with hello_world.py
 - docker-compose up
@@ -22,7 +22,8 @@ sudo docker-compose up
 - Follow steps 1-6 to trigger the run and view logs
 ![image](https://user-images.githubusercontent.com/2136211/170429231-ea711094-42f3-4079-a8ee-aea6febfd3e2.png)
 
-### http rabbitmq
+### file http rabbitmq
+- drop files into ./docker/airflow/fileinput folder to see fresh 30seconds polled based filesensor
 - Create http connection (optional - if not done - right now python code is emulating it via airflow add connection command)
 Admin>connections>add new and enter params like [this image](https://user-images.githubusercontent.com/2136211/170446792-def85dc5-34ef-410d-b48a-5569ad9395ba.png)
  - after starting http_rabbit dag
@@ -35,6 +36,24 @@ postcollection
 test> db.postcollection.count()
 test> db.postcollection.find({}).take(1)
  ```
+
+ ### API 
+ - docs for 1.9/1.10 https://airflow.apache.org/docs/apache-airflow/1.10.3/api.html#endpoints
+ - test http://localhost:8080/api/experimental/test from webbrowser
+ - get latest run
+ ```
+ http://localhost:8080/api/experimental/latest_runs
+ ```
+- trigger dag run using api
+```
+curl -X POST \
+  http://localhost:8080/api/experimental/dags/hello_world/dag_runs \
+  -H 'Cache-Control: no-cache' \
+  -H 'Content-Type: application/json' \
+  -d '{"conf":"{\"key\":\"value\"}"}'
+```
+- pause a dag - http://localhost:8080/api/experimental/dags/hello_world/paused/true
+
 
 ## Rabbitmq operator issue
 because for a few plugins - example rabbitmq - we run into [operator incomptibility](https://stackoverflow.com/questions/67233220/upgrading-to-airflow-2-no-module-named-airflow-hooks-base)
