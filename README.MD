@@ -36,6 +36,9 @@ test> db.postcollection.count()
 test> db.postcollection.find({}).take(1)
  ```
 
+## Rabbitmq operator issue
+because for a few plugins - example rabbitmq - we run into [operator incomptibility](https://stackoverflow.com/questions/67233220/upgrading-to-airflow-2-no-module-named-airflow-hooks-base)
+
 
 ## providers
 - [rabbit](https://github.com/tes/airflow-provider-rabbitmq)
