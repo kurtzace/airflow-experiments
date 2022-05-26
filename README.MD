@@ -1,14 +1,20 @@
 ## Guides
 - [Productionalizing Data Pipelines with Apache Airflow by Axel Sirota | Pluralsight](https://www.pluralsight.com/courses/productionalizing-data-pipelines-apache-airflow)
 - [git study](https://github.com/mikeroyal/Apache-Airflow-Guide)
-- [express youtube guide](https://www.youtube.com/watch?v=2v9AKewyUEo)
+- [express youtube guide](https://www.youtube.com/watch?v=2v9AKewyUEo), [whose git is](https://github.com/soumilshah1995/Learn-Apache-Airflow-in-easy-way-/tree/main/project)
 
 ## Getting started project
 [git productionalizing-data-pipelines-airflow](https://github.com/axel-sirota/productionalizing-data-pipelines-airflow)
 
+## instructions to run the project
+```
+sudo docker-compose build
+sudo docker-compose up
+```
+
 ## providers
 - [rabbit](https://github.com/tes/airflow-provider-rabbitmq)
-- http  - pip install 'apache-airflow-providers-http', [sample dag](https://github.com/apache/airflow/blob/main/airflow/providers/http/example_dags/example_http.py), [blog](https://betterdatascience.com/apache-airflow-rest-api/)
+- http  - pip install 'apache-airflow-providers-http', [sample dag](https://github.com/apache/airflow/blob/main/airflow/providers/http/example_dags/example_http.py), [blog](https://betterdatascience.com/apache-airflow-rest-api/), [example rest apis that we could call](https://gorest.co.in/)
 - mongo - pip install 'apache-airflow-providers-mongo' - [connection troubleshooting](https://stackoverflow.com/questions/64865387/setting-mongodb-connection-with-airflow), [sample dag](https://github.com/axel-sirota/productionalizing-data-pipelines-airflow/blob/main/module5-demo3/dags/mongo_dag.py)
 
 ## How to 
