@@ -23,9 +23,18 @@ sudo docker-compose up
 ![image](https://user-images.githubusercontent.com/2136211/170429231-ea711094-42f3-4079-a8ee-aea6febfd3e2.png)
 
 ### http rabbitmq
-- Create http connection
-Admin>connections>add new and enter params like below
- ![image](https://user-images.githubusercontent.com/2136211/170446792-def85dc5-34ef-410d-b48a-5569ad9395ba.png)
+- Create http connection (optional - if not done - right now python code is emulating it via airflow add connection command)
+Admin>connections>add new and enter params like [this image](https://user-images.githubusercontent.com/2136211/170446792-def85dc5-34ef-410d-b48a-5569ad9395ba.png)
+ - after starting http_rabbit dag
+ - to test mongo insert run
+ ```
+sudo docker exec -it airflow-experiments_mongo_1 sh
+# mongosh
+test> show collections
+postcollection
+test> db.postcollection.count()
+test> db.postcollection.find({}).take(1)
+ ```
 
 
 ## providers
