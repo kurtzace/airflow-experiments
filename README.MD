@@ -22,6 +22,11 @@ sudo docker-compose up
 - Follow steps 1-6 to trigger the run and view logs
 ![image](https://user-images.githubusercontent.com/2136211/170429231-ea711094-42f3-4079-a8ee-aea6febfd3e2.png)
 
+### http rabbitmq
+- Create http connection
+Admin>connections>add new and enter params like below
+ ![image](https://user-images.githubusercontent.com/2136211/170446792-def85dc5-34ef-410d-b48a-5569ad9395ba.png)
+
 
 ## providers
 - [rabbit](https://github.com/tes/airflow-provider-rabbitmq)
