@@ -22,8 +22,6 @@ services:
       - ./dags:/usr/local/airflow/dags
     ports:
       - 8080:8080
-    depends_on:
-      - postgres
     healthcheck:
       test: [ "CMD", "nc", "-z", "airflow", "8080" ]
       timeout: 45s

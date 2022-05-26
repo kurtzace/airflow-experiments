@@ -12,6 +12,17 @@ sudo docker-compose build
 sudo docker-compose up
 ```
 
+### trigger run
+#### first run
+- Hello world
+- with hello_world.py
+- docker-compose up
+- view UI 
+![image](https://user-images.githubusercontent.com/2136211/170428000-8b7c21cc-4f56-4686-9ed2-3b9caff12c80.png)
+- Follow steps 1-6 to trigger the run and view logs
+![image](https://user-images.githubusercontent.com/2136211/170429231-ea711094-42f3-4079-a8ee-aea6febfd3e2.png)
+
+
 ## providers
 - [rabbit](https://github.com/tes/airflow-provider-rabbitmq)
 - http  - pip install 'apache-airflow-providers-http', [sample dag](https://github.com/apache/airflow/blob/main/airflow/providers/http/example_dags/example_http.py), [blog](https://betterdatascience.com/apache-airflow-rest-api/), [example rest apis that we could call](https://gorest.co.in/)
