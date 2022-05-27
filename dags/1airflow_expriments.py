@@ -3,7 +3,7 @@ from textwrap import dedent
 import os
 
 from airflow import DAG
-
+from airflow.operators.dummy_operator import DummyOperator
 from rabbitmq_provider.operators.rabbitmq import RabbitMQOperator
 from airflow.operators.bash import BashOperator
 from airflow.operators.http_operator import SimpleHttpOperator
@@ -49,6 +49,7 @@ with DAG(
         routing_key='test',
         message='http_response_recieved'
     )
+    stop_task   = DummyOperator(  task_id= "stop"  )
         
     t1.doc_md = dedent(
         """\
@@ -59,4 +60,4 @@ with DAG(
 
     dag.doc_md = __doc__ 
     t1 >> http_operator
-    http_operator >> rabbit_operator
+    http_operator >> rabbit_operator >> stop_task

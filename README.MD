@@ -38,6 +38,14 @@ curl -X GET  \
     "${ENDPOINT_URL}/api/v1/pools"
 ```
 
+### Things to try:
+- make json work
+- wait for human action though ui and then proceed with next task
+- Generate dag using drawing
+- drawing rules (priority codes, processs docments as per priority)
+- parallel flow and merge (one that waits for manual)
+> approve reject alternate flow
+
 ### clean up
 ```
 docker compose down --volumes --rmi all
@@ -131,3 +139,5 @@ because for a few plugins - example rabbitmq - we run into [operator incomptibil
 - [create dag via UI discussion](https://stackoverflow.com/questions/48986732/airflow-creating-a-dag-in-airflow-via-ui), using [cwl we can describe workflow in yml syntax](https://cwl-airflow.readthedocs.io/en/latest/readme/quick_start.html)
 - Convert json to Apache Dag: [one blog by geek culture](https://medium.com/geekculture/how-to-dynamically-create-apache-airflow-dag-s-via-only-json-rationalize-tech-47f227071c78)
 - [share data between tasks in Airflow](https://marclamberti.com/blog/airflow-dag-creating-your-first-dag-in-5-minutes/), [eg from airflow docs](https://github.com/apache/airflow/blob/main/airflow/example_dags/example_xcom.py), [Push and Pull same ID from several operator](https://big-data-demystified.ninja/2020/04/15/airflow-xcoms-example-airflow-demystified/)
+
+
