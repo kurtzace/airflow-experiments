@@ -21,6 +21,13 @@ sudo apt-get install docker-compose-plugin
 - view dags 2.0 view
 ![image](https://user-images.githubusercontent.com/2136211/170602797-0f85ec51-a5cf-42eb-a0c0-dd2d59b79987.png)
 
+- run 1airflow_experiments
+whose graph is 
+![image](https://user-images.githubusercontent.com/2136211/170651732-903d020b-234d-4a54-a72d-db702fce9664.png)
+
+see rabbitmq message
+![image](https://user-images.githubusercontent.com/2136211/170651573-40e0ed46-628d-42a3-b6bd-6a4d8a304fa4.png)
+
 
 
 ### Rest call attempt 
@@ -36,6 +43,7 @@ curl -X GET  \
 docker compose down --volumes --rmi all
 ```
 # Airflow 1.9
+using docker-compose version 1.27.4,
 ## Guides
 - [Productionalizing Data Pipelines with Apache Airflow by Axel Sirota | Pluralsight](https://www.pluralsight.com/courses/productionalizing-data-pipelines-apache-airflow)
 - [git study](https://github.com/mikeroyal/Apache-Airflow-Guide)
