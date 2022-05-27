@@ -1,3 +1,41 @@
+# Airflow 2.0
+## Guide
+- [setup](https://www.youtube.com/watch?v=aTaytcxy2Ck) and [official doc](https://airflow.apache.org/docs/apache-airflow/stable/start/docker.html)
+- [diff b/w 1.x and 2.0](https://www.youtube.com/watch?v=mzu4eYOy-Ak)
+- [foundation dockercompose](https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbWdRaG0xNFRyWDNmc0RkSG1jXzk0eTNkR0dFUXxBQ3Jtc0tuRUl1NHdXQ1hjVTFvLVJaWEFRcUZaM3RQSEN4anpodnNzYnJfblV6STdQZlhPQmhuVEVOcTMxb2FaWnBEY2tPNy1MRWFOd3Nnc1RnSlFlMXZ4WkR0YUtESXQzY1JFOXF2emlybjkwYXY3cWs1UXhqTQ&q=https%3A%2F%2Fairflow.apache.org%2Fdocs%2Fapache-airflow%2Fstable%2Fdocker-compose.yaml&v=aTaytcxy2Ck)
+
+## instructions to run
+### first time 
+- ensure Install Docker Compose v1.29.1 and newer on your workstation.
+
+in ubuntu
+```
+sudo apt-get update
+sudo apt-get install docker-compose-plugin
+```
+- echo -e "AIRFLOW_UID=$(id -u)\nAIRFLOW_GID=0" > .env
+- sudo docker compose up airflow-init
+### every time
+- sudo docker compose up
+- signin page - type airflow and airflow
+- view dags 2.0 view
+![image](https://user-images.githubusercontent.com/2136211/170602797-0f85ec51-a5cf-42eb-a0c0-dd2d59b79987.png)
+
+
+
+### Rest call attempt 
+```
+ENDPOINT_URL="http://localhost:8080/"
+curl -X GET  \
+    --user "airflow:airflow" \
+    "${ENDPOINT_URL}/api/v1/pools"
+```
+
+### clean up
+```
+docker compose down --volumes --rmi all
+```
+# Airflow 1.9
 ## Guides
 - [Productionalizing Data Pipelines with Apache Airflow by Axel Sirota | Pluralsight](https://www.pluralsight.com/courses/productionalizing-data-pipelines-apache-airflow)
 - [git study](https://github.com/mikeroyal/Apache-Airflow-Guide)
@@ -8,8 +46,8 @@
 
 ## instructions to run the project
 ```
-sudo docker-compose build
-sudo docker-compose up
+sudo docker-compose -f docker-compose19.yml build
+sudo docker-compose -f docker-compose19.yml  up
 ```
 
 ## trigger run
@@ -22,7 +60,7 @@ sudo docker-compose up
 - Follow steps 1-6 to trigger the run and view logs
 ![image](https://user-images.githubusercontent.com/2136211/170429231-ea711094-42f3-4079-a8ee-aea6febfd3e2.png)
 
-### file http rabbitmq
+### file http mongo
 - drop files into ./docker/airflow/fileinput folder to see fresh 30seconds polled based filesensor
 - Create http connection (optional - if not done - right now python code is emulating it via airflow add connection command)
 Admin>connections>add new and enter params like [this image](https://user-images.githubusercontent.com/2136211/170446792-def85dc5-34ef-410d-b48a-5569ad9395ba.png)
@@ -36,6 +74,14 @@ postcollection
 test> db.postcollection.count()
 test> db.postcollection.find({}).take(1)
  ```
+ - graph view
+ ![image](https://user-images.githubusercontent.com/2136211/170595596-74e6bc06-e56f-4d99-9e0e-8c3b4c9e0b5a.png)
+ - tree view
+ ![image](https://user-images.githubusercontent.com/2136211/170595670-49fb902f-60cd-4160-b9a8-8b28806371c0.png)
+- dag view
+![image](https://user-images.githubusercontent.com/2136211/170596044-0814a79d-f01d-4f2e-a282-2b9121dc7269.png)
+
+
 
  ### API 
  - docs for 1.9/1.10 https://airflow.apache.org/docs/apache-airflow/1.10.3/api.html#endpoints
@@ -58,6 +104,9 @@ curl -X POST \
 ## Rabbitmq operator issue
 because for a few plugins - example rabbitmq - we run into [operator incomptibility](https://stackoverflow.com/questions/67233220/upgrading-to-airflow-2-no-module-named-airflow-hooks-base)
 
+
+
+# Appendix
 
 ## providers
 - [rabbit](https://github.com/tes/airflow-provider-rabbitmq)
