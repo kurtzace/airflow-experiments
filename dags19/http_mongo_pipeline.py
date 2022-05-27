@@ -31,7 +31,7 @@ def mongocall(**kwargs):
 
 
 
-dag = DAG('http_rabbit', description='http Rabbit DAG',
+dag = DAG('http_mongo', description='http mongo DAG',
           schedule_interval='@daily',
           start_date=datetime(2022, 5, 20), catchup=False)
 
@@ -49,7 +49,7 @@ mongo_operator = PythonOperator(task_id='mongo_task',
     provide_context=True)
 
 
-rabbit_operator = DummyOperator(task_id='rabbit_task', dag=dag)
+dummy_operator = DummyOperator(task_id='dummy_task', dag=dag)
 
 file_task = FileSensor( task_id= "file_sensor_task", 
     poke_interval= 30,  filepath= "/fileinput" )
@@ -72,4 +72,4 @@ file_task = FileSensor( task_id= "file_sensor_task",
 #      dag=dag)
 
 file_task >> http_operator
-http_operator >> [mongo_operator, rabbit_operator]
+http_operator >> [mongo_operator, dummy_operator]
