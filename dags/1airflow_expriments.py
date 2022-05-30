@@ -49,7 +49,6 @@ with DAG(
         routing_key='test',
         message='http_response_recieved'
     )
-    stop_task   = DummyOperator(  task_id= "stop"  )
         
     t1.doc_md = dedent(
         """\
@@ -60,4 +59,4 @@ with DAG(
 
     dag.doc_md = __doc__ 
     t1 >> http_operator
-    http_operator >> rabbit_operator >> stop_task
+    http_operator >> rabbit_operator

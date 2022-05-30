@@ -1,0 +1,3 @@
+fastapi
+uvicorn[standard]
+pymongo==3.11.3

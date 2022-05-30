@@ -29,6 +29,47 @@ see rabbitmq message
 ![image](https://user-images.githubusercontent.com/2136211/170651573-40e0ed46-628d-42a3-b6bd-6a4d8a304fa4.png)
 
 
+### 2nd dag is dynamically generated from json
+docker/airflow/fileinput/input_dag.json
+
+### 3rd one is human_in_loop
+
+![image](https://user-images.githubusercontent.com/2136211/171000787-d04f787a-0583-4e8d-ae15-a9db63d974a5.png)
+
+ensure you run both docker composes
+```
+sudo docker-compose -f docker-compose19.yml build
+sudo docker-compose -f docker-compose19.yml  up
+sudo docker compose  up
+```
+
+....19.yml starts API and mongo
+normal ynl starts airflow and rabbit
+
+after it is triggered.
+
+you will see that pending runs infinitely 
+
+it is waiting for human
+
+so copy the jobid from xcom tab of mongo_task
+
+![image](https://user-images.githubusercontent.com/2136211/171001487-221dfd63-130d-483d-9217-8f6d3b6d92df.png)
+
+then call api by either visiting http://localhost:60001/docs
+
+or
+
+call
+```
+curl -X 'GET' \
+  'http://localhost:60001/sethumaninput/22-0530-1314?status=false' \
+  -H 'accept: application/json'
+```
+
+depending on which (status) accurate or inaccurate flow is called
+
+
 
 ### Rest call attempt 
 ```
