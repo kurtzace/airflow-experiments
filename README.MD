@@ -36,8 +36,15 @@ docker/airflow/fileinput/input_dag.json
 
 ![image](https://user-images.githubusercontent.com/2136211/171000787-d04f787a-0583-4e8d-ae15-a9db63d974a5.png)
 
+replace myip with your ip in 3human....py by running
+```
+#in ubuntu
+hostname -I
+```
+
 ensure you run both docker composes
 ```
+#using docker-compose version 1.27.4,
 sudo docker-compose -f docker-compose19.yml build
 sudo docker-compose -f docker-compose19.yml  up
 sudo docker compose  up
@@ -79,9 +86,47 @@ curl -X GET  \
     "${ENDPOINT_URL}/api/v1/pools"
 ```
 
+### 4th human non polling 
+Run the 4th dag
+
+visit graph and get details as highlighted
+
+![image](https://user-images.githubusercontent.com/2136211/171181806-975dbc70-1d48-43f3-8e38-91f05bdc32c9.png)
+
+
+call the following endpoint and mark as success (i.e emulated human action)
+
+```
+ENDPOINT_URL="http://localhost:8080/"
+curl -X POST  \
+    --user "airflow:airflow" \
+    -H 'Content-Type: application/json' \
+    "${ENDPOINT_URL}api/v1/dags/4human_non_polling/updateTaskInstancesState" \
+    -d "{ \"dry_run\": false, \"task_id\": \"manual_sign_off\", \
+    \"include_upstream\":  false, \"include_downstream\":  false, \"include_future\":  false, \"include_past\":  false, \
+  \"dag_run_id\": \"manual__2022-05-31T13:01:13.894084+00:00\", \
+  \"new_state\": \"success\" }"
+
+```
+[explanation of above api](https://airflow.apache.org/docs/apache-airflow/stable/stable-rest-api-ref.html#operation/post_set_task_instances_state)
+
+then the next step will execute.
+
+concept is derived from [link](https://stackoverflow.com/questions/48580341/how-to-add-manual-tasks-in-an-apache-airflow-dag)
+
+### graphiccal way via airflow 2.x issues
+- [elyra on this link mentions that 'Apache Airflow version 2.x is currently not supported.'](https://github.com/elyra-ai/examples/tree/master/pipelines/run-generic-pipelines-on-apache-airflow)
+- [cwl docs also talk about airflow 1.10 ui](https://cwl-airflow.readthedocs.io/en/latest/readme/how_to_use.html), pip install of  cwl-airflow in 2.x also failed
+- so will stop attempts on 2.x and try on 1.x
+
+
+### BPM type workflow?
+- Using [Spiff](https://spiffworkflow.readthedocs.io/en/latest/intro.html) we can run user based workflow and standard bpmn diagrams. [Example project](https://github.com/sartography/spiff-example-cli) and somehow merge with airflow
+- to view bpm https://demo.bpmn.io/
+
 ### Things to try:
-- make json work
-- wait for human action though ui and then proceed with next task
+- [x] make json work
+- [x] wait for human action though ui and then proceed with next task
 - Generate dag using drawing
 - drawing rules (priority codes, processs docments as per priority)
 - parallel flow and merge (one that waits for manual)
