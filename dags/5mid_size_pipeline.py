@@ -77,9 +77,9 @@ with DAG(
         )
         file_sort_task   = DummyOperator(  task_id= "file_sort"  )
         pdf_task   = FileSensor( task_id= "pdf_to_img", 
-                poke_interval= 30,  filepath= "/fileinput/p5/*.pdf" )
+                poke_interval= 30,  filepath= "/fileinput/p5/*.png" )
         img_task   = FileSensor(  task_id= "img_fix"  ,
-                poke_interval= 30,  filepath= "/fileinput/p5/*.[jpg|png]" )
+                poke_interval= 30,  filepath= "/fileinput/p5/*.jpg" )
         gather_task   = DummyOperator(  task_id= "gather_files"  )
         cleanup >> file_task >> task_rename_file >> file_sort_task >> [pdf_task, img_task] >> gather_task
     classify_task  = DummyOperator(  task_id= "classify"  )
