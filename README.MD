@@ -114,6 +114,15 @@ then the next step will execute.
 
 concept is derived from [link](https://stackoverflow.com/questions/48580341/how-to-add-manual-tasks-in-an-apache-airflow-dag)
 
+### 5th mid sized pipeline
+- add aws conn string like this 
+- ![image](https://betterdatascience.com/content/images/size/w1000/2022/03/2-32.png), [ref](https://betterdatascience.com/apache-airflow-amazon-s3-download/)
+- I created a file s3://git-experiments/airflow-exp-p5-file-list.json
+with contents
+```
+["plate_mh_p1.jpg", "rec_part2_p2.jpg", "survey_like_p2.png", "rec_appliance_p2.png", "rec_walmart_p1.jpg", "tax_us_p1.png"]
+```
+
 ### graphiccal way via airflow 2.x issues
 - [elyra on this link mentions that 'Apache Airflow version 2.x is currently not supported.'](https://github.com/elyra-ai/examples/tree/master/pipelines/run-generic-pipelines-on-apache-airflow)
 - [cwl docs also talk about airflow 1.10 ui](https://cwl-airflow.readthedocs.io/en/latest/readme/how_to_use.html), pip install of  cwl-airflow in 2.x also failed
@@ -124,6 +133,14 @@ concept is derived from [link](https://stackoverflow.com/questions/48580341/how-
 - Using [Spiff](https://spiffworkflow.readthedocs.io/en/latest/intro.html) we can run user based workflow and standard bpmn diagrams. [Example project](https://github.com/sartography/spiff-example-cli) and somehow merge with airflow
 - to view bpm https://demo.bpmn.io/
 
+- to run
+```
+  859  git clone https://github.com/sartography/spiff-example-cli
+  860  cd spiff-example-cli/
+  861  sudo docker build . -t spiff_example_cli
+  862  docker run -it --rm spiff_example_cli
+```
+
 ### Things to try:
 - [x] make json work
 - [x] wait for human action though ui and then proceed with next task
@@ -131,6 +148,7 @@ concept is derived from [link](https://stackoverflow.com/questions/48580341/how-
 - drawing rules (priority codes, processs docments as per priority)
 - parallel flow and merge (one that waits for manual)
 > approve reject alternate flow
+- queue - jira or library
 
 ### clean up
 ```
